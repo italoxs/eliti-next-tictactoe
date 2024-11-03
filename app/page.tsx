@@ -65,6 +65,7 @@ export default function TicTacToe() {
 
   const renderSquare = (i) => (
     <button
+    type="button"
       className={`w-full h-24 border flex items-center justify-center border-blue-500 text-2xl font-bold
         ${!board[i] && gameStarted ? 'hover:bg-gray-100' : ''}
         ${winner && board[i] === winner ? 'bg-green-200' : 'bg-white'}`}
@@ -82,13 +83,15 @@ export default function TicTacToe() {
           <CardTitle className="flex justify-between items-center text-slate-200">Jogo da Velha</CardTitle>
         </CardHeader>
         <CardContent className="space-y-2 ">
-          <div className="space-y-2 text-slate-200 placeholder-slate-100">
+          <div className="space-y-2">
             <Input
+              className="text-slate-100 placeholder:text-slate-300"
               placeholder="Nome do Jogador 1 (X)"
               value={player1Name}
               onChange={(e) => setPlayer1Name(e.target.value)}
             />
             <Input
+              className="text-slate-100 placeholder:text-slate-300"
               placeholder="Nome do Jogador 2 (O)"
               value={player2Name}
               onChange={(e) => setPlayer2Name(e.target.value)}
