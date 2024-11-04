@@ -13,7 +13,7 @@ export default function TicTacToe() {
   const [xIsNext, setXIsNext] = useState(true);
   const [gameStarted, setGameStarted] = useState(false);
 
-  const calculateWinner = (squares) => {
+  const calculateWinner = (squares: []) => {
     const lines = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontais
       [0, 3, 6], [1, 4, 7], [2, 5, 8], // verticais
