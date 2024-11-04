@@ -5,16 +5,24 @@ import { Input } from "@/components/ui/input";
 import { RefreshCcw, Trophy } from "lucide-react";
 import { useState } from "react";
 
-export default function TicTacToe() {
-  const [board, setBoard] = useState(Array(9).fill(null))
-  const [player1Name, setPlayer1Name] = useState('')
-  const [player2Name, setPlayer2Name] = useState('')
-  const [scores, setScores] = useState({ player1: 0, player2: 0 })
-  const [xIsNext, setXIsNext] = useState(true);
-  const [gameStarted, setGameStarted] = useState(false);
+type Player = 'X' | 'O' | null;
+type Board = Player[];
 
-  const calculateWinner = (squares: []) => {
-    const lines = [
+interface Scores {
+  player1: number;
+  player2: number;
+}
+
+export default function TicTacToe() {
+  const [board, setBoard] = useState<Board>(Array(9).fill(null))
+  const [player1Name, setPlayer1Name] = useState<string>('')
+  const [player2Name, setPlayer2Name] = useState<string>('')
+  const [scores, setScores] = useState<Scores>({ player1: 0, player2: 0 })
+  const [xIsNext, setXIsNext] = useState<boolean>(true);
+  const [gameStarted, setGameStarted] = useState<boolean>(false);
+
+  const calculateWinner = (squares: Board): Player => {
+    const lines: number[][] = [
       [0, 1, 2], [3, 4, 5], [6, 7, 8], // horizontais
       [0, 3, 6], [1, 4, 7], [2, 5, 8], // verticais
       [0, 4, 8], [2, 4, 6] // diagonais
@@ -46,18 +54,18 @@ export default function TicTacToe() {
     }
   }
 
-  const startGame = () => {
+  const startGame = (): void => {
     if (player1Name && player2Name) {
       setGameStarted(true);
     }
   };
-
-  const resetGame = () => {
+ 
+  const resetGame = (): void => {
     setBoard(Array(9).fill(null));
     setXIsNext(true);
   };
 
-  const winner = calculateWinner(board)
+  const winner: Player = calculateWinner(board)
   const status = winner ? `Vencedor: ${winner === 'X' ? player1Name : player2Name}`
     : board.every(square => square)
     ? 'Empate!'
