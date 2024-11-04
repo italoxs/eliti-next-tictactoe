@@ -29,7 +29,7 @@ export default function TicTacToe() {
     return null;
   };
 
-  const handleClick = (i) => {
+  const handleClick = (i: number) => {
     if (!gameStarted || board[i] || calculateWinner(board)) return
 
     const newBoard = board.slice()
@@ -63,7 +63,7 @@ export default function TicTacToe() {
     ? 'Empate!'
     : `Próximo jogador: ${xIsNext ? player1Name : player2Name} (${xIsNext ? 'X' : 'O'})`
 
-  const renderSquare = (i) => (
+  const renderSquare = (i: number) => (
     <button
     type="button"
       className={`w-full h-24 border flex items-center justify-center border-blue-500 text-2xl font-bold
